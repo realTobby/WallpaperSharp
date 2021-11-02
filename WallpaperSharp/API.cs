@@ -12,8 +12,9 @@ namespace WallpaperSharp
     {
         private ConfigModel loadedConfig;
 
+        private string searchTagEndpoint = "search?categories=000&purity=110&resolutions=1920x1080&ratios=16x9&sorting=date_added&order=desc";
+
         private string baseEndpoint = "https://wallhaven.cc/api/v1/";
-        private string searchTagEndpoint = "search?page=1&atleast=1920x1080&q=";
         
 
         public API()
@@ -28,7 +29,7 @@ namespace WallpaperSharp
 
         public WallpaperModel SearchTag(string tag)
         {
-            string endpointToCall = baseEndpoint + searchTagEndpoint + tag;
+            string endpointToCall = baseEndpoint + searchTagEndpoint;
             endpointToCall = AuthenticateRequest(endpointToCall);
             endpointToCall = SetPurityLevel(endpointToCall);
             WallpaperModel pM = WallpaperModel.FromJson(GetJsonFromEndpoint(endpointToCall));
